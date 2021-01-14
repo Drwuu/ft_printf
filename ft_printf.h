@@ -6,7 +6,7 @@
 /*   By: lwourms <lwourms@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/09 14:33:04 by lwourms           #+#    #+#             */
-/*   Updated: 2021/01/11 16:41:59 by lwourms          ###   ########lyon.fr   */
+/*   Updated: 2021/01/13 18:21:17 by lwourms          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,10 @@ typedef	struct	s_datas
 }				t_datas;
 
 int		ft_printf(const char *input, ...);
-t_list	*ft_conv_char(char c, char *str, t_list **list);
-t_list	*ft_no_conv(char *str, t_list **list);
-void	ft_init_datas(t_datas *datas);
+t_list	**fill_list(t_list **list, char *str, char *f(const char *));
+t_list	*ft_no_conv(char *s, t_list **list);
+t_list	*ft_conv_char(char c, char *s, t_list **list);
+t_list	*ft_conv_str(t_list **list, va_list ap);
+t_list	**ft_conv_digits(char c, t_list **list, va_list ap);
 
 #endif

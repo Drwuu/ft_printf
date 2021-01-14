@@ -4,10 +4,26 @@
 
 int main()
 {
-	dprintf(1, "MINE = ");
+	int j = 25;
+
+	dprintf(1, "*** MINE ***\n");
 	ft_printf("test%cbest%%bo\n", 'T');
-	dprintf(1, "REAL = ");
+	ft_printf("test%sbest%%bo\n", "coucou");
+	ft_printf("test%dbest%%bo\n", INT_MIN);
+	ft_printf("test%ibest%%bo\n", INT_MAX);
+	ft_printf("test%ubest%%bo\n", UINT_MAX);
+	ft_printf("test%xbest%%bo\n", UINT_MAX);
+	ft_printf("test%Xbest%%bo\n", 1250005554);
+	ft_printf("test%pbest%%bo\n", &j);
+	dprintf(1, "*** REAL ***\n");
 	dprintf(1, "test%cbest%%bo\n", 'T');
+	dprintf(1, "test%sbest%%bo\n", "coucou");
+	dprintf(1, "test%dbest%%bo\n", INT_MIN);
+	dprintf(1, "test%ibest%%bo\n", INT_MAX);
+	dprintf(1, "test%ubest%%bo\n", UINT_MAX);
+	dprintf(1, "test%xbest%%bo\n", UINT_MAX);
+	dprintf(1, "test%Xbest%%bo\n", 1250005554);
+	dprintf(1, "test%pbest%%bo\n", &j);
 	while(1);
 	/* printf("*** OWN TESTS ***\n");
 	printf("%%10.5d for 12 = ");
