@@ -1,32 +1,31 @@
 NAME			= libftprintf.a
 
-LIBFT_FOLDER	= libft
-
-SRCS			= ft_printf.c ft_printf_utils.c ft_conv.c
+SRCS			= ft_printf.c ft_printf_utils.c ft_conv.c ft_flags.c
 
 OBJS			= $(SRCS:.c=.o)
 
-LIBFT			= make -C $(LIBFT_FOLDER)
-
 FLAGS			= -Wall -Wextra -Werror
 
+all:			libs $(NAME)
+
+libs:		
+				make -C libft
+
 $(NAME):		$(OBJS)
+				cp libft/libft.a $(NAME)
 				ar rc $@ $^
 
-%.o:			%.c ft_printf.h
-				$(LIBFT)
-				gcc $(FLAGS) -c $< -o $@
-
-all:			$(NAME)
+%.o:			%.c ft_printf.h libft/libft.a
+				gcc $(FLAGS) -I . -I libft -c $< -o $@
 
 clean:
 				rm -f $(OBJS)
-				make -C $(LIBFT_FOLDER) clean
+				make -C libft clean
 
 fclean:			clean
 				rm -f $(NAME)
-				rm -f ./LIBFT_FOLDER/libft.a 
+				make -C libft fclean 
 
 re:				fclean all
 
-.PHONY:			all clean fclean re
+.PHONY:			all clean fclean re libs

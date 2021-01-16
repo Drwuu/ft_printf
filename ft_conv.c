@@ -6,17 +6,19 @@
 /*   By: lwourms <lwourms@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/09 14:44:47 by lwourms           #+#    #+#             */
-/*   Updated: 2021/01/13 19:36:21 by lwourms          ###   ########lyon.fr   */
+/*   Updated: 2021/01/16 15:56:36 by lwourms          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-t_list		*ft_no_conv(char *s, t_list **list)
+t_list		*no_conv(char *s, t_list **list)
 {
 	t_datas	*datas;
 	t_list	*new_el;
 
+	if (!s)
+		return (NULL);
 	if (!(datas = ft_calloc(sizeof(*datas), 1)))
 		return (NULL);
 	if (!(datas->str = s))
@@ -27,11 +29,13 @@ t_list		*ft_no_conv(char *s, t_list **list)
 	return (new_el);
 }
 
-t_list		*ft_conv_char(char c, char *s, t_list **list)
+t_list		*conv_char(char c, char *s, t_list **list)
 {
 	t_datas	*datas;
 	t_list	*new_el;
 
+	if (!s)
+		return (NULL);
 	if (!(datas = ft_calloc(sizeof(*datas), 1)))
 		return (NULL);
 	if (c == '%')
@@ -49,7 +53,7 @@ t_list		*ft_conv_char(char c, char *s, t_list **list)
 	return (new_el);
 }
 
-t_list		**ft_conv_digits(char c, t_list **list, va_list ap)
+t_list		**conv_digits(char c, t_list **list, va_list ap)
 {
 	t_list	**lst;
 	char	*nb;

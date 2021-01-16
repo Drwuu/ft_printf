@@ -6,7 +6,7 @@
 /*   By: lwourms <lwourms@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/09 14:33:04 by lwourms           #+#    #+#             */
-/*   Updated: 2021/01/13 18:21:17 by lwourms          ###   ########lyon.fr   */
+/*   Updated: 2021/01/16 16:49:03 by lwourms          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,12 @@
 
 #include	<stdarg.h>
 #include	"libft/libft.h"
+#include <stdio.h> //to remove
 
 typedef	struct	s_datas
 {
 	char			*str;
-	int				id;
+	int				field;
 	int				star;
 	int				dot;
 	int				minus;
@@ -27,10 +28,15 @@ typedef	struct	s_datas
 }				t_datas;
 
 int		ft_printf(const char *input, ...);
+void	init_datas(t_datas *datas);
+int		free_error(t_list *lst, va_list ap);
 t_list	**fill_list(t_list **list, char *str, char *f(const char *));
-t_list	*ft_no_conv(char *s, t_list **list);
-t_list	*ft_conv_char(char c, char *s, t_list **list);
-t_list	*ft_conv_str(t_list **list, va_list ap);
-t_list	**ft_conv_digits(char c, t_list **list, va_list ap);
+char	*collect_digits_seq(const char *digits, int *start);
+t_list	*no_conv(char *s, t_list **list);
+t_list	*conv_char(char c, char *s, t_list **list);
+t_list	*conv_str(t_list **list, va_list ap);
+t_list	**conv_digits(char c, t_list **list, va_list ap);
+int		get_flags(const char *input, int *i, t_datas **flags);
+char	*get_field(const char *input, int *i);
 
 #endif

@@ -4,26 +4,71 @@
 
 int main()
 {
-	int j = 25;
-
+	//int j = 0;
+	
 	dprintf(1, "*** MINE ***\n");
-	ft_printf("test%cbest%%bo\n", 'T');
+	/* ft_printf("test%cbest%%bo\n", 'T');
 	ft_printf("test%sbest%%bo\n", "coucou");
 	ft_printf("test%dbest%%bo\n", INT_MIN);
 	ft_printf("test%ibest%%bo\n", INT_MAX);
 	ft_printf("test%ubest%%bo\n", UINT_MAX);
 	ft_printf("test%xbest%%bo\n", UINT_MAX);
-	ft_printf("test%Xbest%%bo\n", 1250005554);
-	ft_printf("test%pbest%%bo\n", &j);
+	ft_printf("test%Xbest%%bo\n", 1250005554); */
+	//ft_printf("test%pbest%%bo\n", &j);
+	ft_printf("%015d\n", 125);
+	
 	dprintf(1, "*** REAL ***\n");
-	dprintf(1, "test%cbest%%bo\n", 'T');
+	/* dprintf(1, "test%cbest%%bo\n", 'T');
 	dprintf(1, "test%sbest%%bo\n", "coucou");
 	dprintf(1, "test%dbest%%bo\n", INT_MIN);
 	dprintf(1, "test%ibest%%bo\n", INT_MAX);
 	dprintf(1, "test%ubest%%bo\n", UINT_MAX);
-	dprintf(1, "test%xbest%%bo\n", UINT_MAX);
-	dprintf(1, "test%Xbest%%bo\n", 1250005554);
-	dprintf(1, "test%pbest%%bo\n", &j);
+	dprintf(1, "test%xbest%%bo\n", UINT_MAX);ß
+	dprintf(1, "test%Xbest%%bo\n", 1250005554); */
+	dprintf(1, "%015d\n", 125);
+
+
+	dprintf(1, "*** TEST FLAGS ***\n");
+
+
+	dprintf(1, "*** TRIPOUILLE ***\n");
+	/* dprintf(1, "%s\n", "");
+	dprintf(1, "%s\n", "0");
+	dprintf(1, "%s %s\n", "", "");
+	dprintf(1, "%s %s\n", "0", "1");
+	dprintf(1, " %s %s \n", "0", "1");
+	dprintf(1, " %s %s \n", "", "");
+	dprintf(1, " %1s %1s \n", "123", "4567");
+	dprintf(1, " %4s %4s \n", "123", "4567");
+	dprintf(1, " %-4s %4s \n", "123", "4567");
+	dprintf(1, " %4s %-4s \n", "123", "4567");
+	dprintf(1, " %-4s %-4s \n", "123", "4567");
+	dprintf(1, " %*s %*s \n", 1, "123", 10, "4567");
+	dprintf(1, " *%s %*s \n", "123", 10, "4567");
+	dprintf(1, " %*s %s \n", 10, "123", "4567");
+	dprintf(1, "%5c\n", 'a');
+	dprintf(1, "%4s %.1s \n", "123", "4567");
+	dprintf(1, "%*.s %.1s \n", 10, "123", "4567");
+	dprintf(1, "%*.0s %.2s \n", 10, "123", "4567");
+	dprintf(1, "%*.3s %.3s \n", 10, "123", "4567");
+	dprintf(1, "%*.4s %.4s \n", 10, "123", "4567");
+	dprintf(1, "%*.5s %.5s \n", 10, "123", "4567");
+	dprintf(1, "%*.5s %*.5s \n", 10, "123", 10, "4567");
+	dprintf(1, "%*.5s %*.5s \n", -10, "123", 10, "4567");
+	dprintf(1, "%*.5s %*.5s \n", 10, "123", -10, "4567");
+	dprintf(1, "%*.5s %*.5s \n", -10, "123", -10, "4567");
+	dprintf(1, "%10.s %1.s \n", "123", "4567");
+	//dprintf(1," %0.s %0.s \n", "123", "4567");
+	dprintf(1, "%.s %.s \n", "123", "4567");
+	dprintf(1, "%3.3s %3.3s \n", "123", "4567");
+	dprintf(1, "%4.3s %-4.3s \n", "123", "4567");
+	dprintf(1, "%.s\n", "");
+	dprintf(1, "%.0s\n", "");
+	dprintf(1, "%.1s\n", "");
+	dprintf(1, "%4.2s %-4.2s \n", "123", "4567"); */
+
+
+	//dprintf(1, "test%pbest%%bo\n", &j);
 	while(1);
 	/* printf("*** OWN TESTS ***\n");
 	printf("%%10.5d for 12 = ");
