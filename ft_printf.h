@@ -6,7 +6,7 @@
 /*   By: lwourms <lwourms@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/09 14:33:04 by lwourms           #+#    #+#             */
-/*   Updated: 2021/01/16 16:49:03 by lwourms          ###   ########lyon.fr   */
+/*   Updated: 2021/01/16 17:56:51 by lwourms          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,5 +38,6 @@ t_list	*conv_str(t_list **list, va_list ap);
 t_list	**conv_digits(char c, t_list **list, va_list ap);
 int		get_flags(const char *input, int *i, t_datas **flags);
 char	*get_field(const char *input, int *i);
+int		get_precision(const char *input, int *i, t_datas **flags);
 
 #endif

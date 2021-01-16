@@ -6,7 +6,7 @@
 /*   By: lwourms <lwourms@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/15 10:31:25 by lwourms           #+#    #+#             */
-/*   Updated: 2021/01/16 17:15:19 by lwourms          ###   ########lyon.fr   */
+/*   Updated: 2021/01/16 17:58:45 by lwourms          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,10 @@ int			get_flags(const char *input, int *i, t_datas **flags)
 			if (!(temp = get_field(input, i)))
 				return (-1);
 			((t_datas *)*flags)->field = ft_atoi(temp);
-			dprintf(1, "field = %d\n", ((t_datas *)*flags)->field );
 			free(temp);
 		}
-		((t_datas *)*flags)->dot = (input[*i + 1] == '.') ? 0 : -1;
-		((t_datas *)*flags)->star = (input[*i +1 ] == '*') ? 0 : -1;
+		
+		((t_datas *)*flags)->star = (input[*i + 1] == '*') ? 0 : -1;
 		((t_datas *)*flags)->minus = (input[*i + 1] == '-') ? 0 : -1;
 		*i += 1;
 	}
@@ -58,5 +57,16 @@ char		*get_field(const char *input, int *i)
 
 	if (!(digits = collect_digits_seq(input, i)))
 		return (NULL);
+	return (digits);
+}
+
+int			get_precision(const char *input, int *i, t_datas **flags)
+{
+	char	*digits;
+
+	if (!(digits = collect_digits_seq(input, i)))
+		return (-1);
+	((t_datas *)*flags)->dot = (input[*i + 1] == '.') ? \
+	get_field(input, i) : -1;
 	return (digits);
 }

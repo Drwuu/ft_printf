@@ -6,7 +6,7 @@
 /*   By: lwourms <lwourms@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/09 14:54:25 by lwourms           #+#    #+#             */
-/*   Updated: 2021/01/16 17:35:00 by lwourms          ###   ########lyon.fr   */
+/*   Updated: 2021/01/16 17:42:33 by lwourms          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ static t_list	*treat_input(const char *input, t_list **lst, va_list ap)
 	if (!(flags = prepare_input(input, lst, &i, &start)))
 		return (NULL);
 	f_elem = *lst;
+	dprintf(1, "field = %d\n", flags->field);
 	while ((i = ft_chr_index(input, '%', i)) && input[i])
 	{
 		if (i - start > 0)
