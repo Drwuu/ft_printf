@@ -1,26 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstnew.c                                        :+:      :+:    :+:   */
+/*   ft_treat_flags.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lwourms <lwourms@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/23 00:51:53 by drwuu             #+#    #+#             */
-/*   Updated: 2021/01/23 14:13:06 by lwourms          ###   ########lyon.fr   */
+/*   Created: 2021/01/23 14:59:57 by lwourms           #+#    #+#             */
+/*   Updated: 2021/01/23 18:08:26 by lwourms          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
-t_list	*ft_lstnew(void *content)
+void		treat_field(t_list *lst)
 {
-	t_list	*new_elem;
+	int		i;
+	int		size;
+	t_datas	*datas;
 
-	if (!content)
-		return (NULL);
-	if (!(new_elem = malloc(sizeof(*new_elem))))
-		return (NULL);
-	new_elem->content = content;
-	new_elem->next = NULL;
-	return (new_elem);
+	datas = lst->content;
+	if (datas->field > -1)
+	{
+
+		size = datas->field - ft_strlen(datas->str);
+		i = 0;
+		while (i++ < size)
+		{
+			if (datas->zero > -1)
+				ft_putchar_fd('0', 1);
+			else
+				ft_putchar_fd(' ', 1);
+		}
+	}
 }

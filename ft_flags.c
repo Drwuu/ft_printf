@@ -6,67 +6,83 @@
 /*   By: lwourms <lwourms@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/15 10:31:25 by lwourms           #+#    #+#             */
-/*   Updated: 2021/01/16 17:58:45 by lwourms          ###   ########lyon.fr   */
+/*   Updated: 2021/01/23 14:30:04 by lwourms          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static int	is_flag_zero(const char *input, int *i)
+static int	get_char(const char *input, int i, char c)
 {
-	if (input[*i + 1] && input[*i + 1] == '0')
-		if (input[*i + 2] && ft_isdigit(input[*i + 2]))
-		{
-			*i += 1;
-			return (0);
-		}
+	if (input[i] == c)
+		return (0);
 	return (-1);
 }
 
-int			get_flags(const char *input, int *i, t_datas **flags)
+static int	is_flag_zero(const char *input, int i)
 {
-	char	*temp;
+	if (input[i] && input[i] == '0')
+		if (input[i + 1] && ft_isdigit(input[i + 1]))
+			return (0);
+	return (-1);
+}
 
-	if (!(*flags = ft_calloc(sizeof(**flags), 1)))
-			return (-1);
-	init_datas(*flags);
-	while (input[*i + 1])
+static int	get_field(const char *input, int *i, t_datas **flags)
+{
+	char	*digits;
+
+	if (ft_isdigit(input[*i]))
 	{
-		((t_datas *)*flags)->zero = is_flag_zero(input, i);
-		if (ft_isdigit(input[*i + 1]))
-		{
+		if (!(digits = collect_digits_seq(input, *i)))
+			return (-1);
+		((t_datas *)*flags)->field = ft_atoi(digits);
+		free(digits);
+		while (ft_isdigit(input[*i]))
 			*i += 1;
-			if (!(temp = get_field(input, i)))
-				return (-1);
-			((t_datas *)*flags)->field = ft_atoi(temp);
-			free(temp);
-		}
-		
-		((t_datas *)*flags)->star = (input[*i + 1] == '*') ? 0 : -1;
-		((t_datas *)*flags)->minus = (input[*i + 1] == '-') ? 0 : -1;
-		*i += 1;
+		return (1);
 	}
-	if (!*flags)
-		free(*flags);
-	return (1);
+	return (0);
 }
 
-char		*get_field(const char *input, int *i)
+static int	get_precision(const char *input, int *i, t_datas **flags)
 {
 	char	*digits;
 
-	if (!(digits = collect_digits_seq(input, i)))
+	if (input[*i] == '.')
+	{
+		*i += 1;
+		if (!(digits = collect_digits_seq(input, *i)))
+			return (-1);
+		((t_datas *)*flags)->dot = ft_atoi(digits);
+		free(digits);
+		while (ft_isdigit(input[*i]))
+			*i += 1;
+		return (1);
+	}
+	return (0);
+}
+
+t_datas		*get_flags(const char *input, int *i, va_list ap)
+{
+	t_datas *datas;
+
+	if (!(datas = init_datas()))
 		return (NULL);
-	return (digits);
-}
-
-int			get_precision(const char *input, int *i, t_datas **flags)
-{
-	char	*digits;
-
-	if (!(digits = collect_digits_seq(input, i)))
-		return (-1);
-	((t_datas *)*flags)->dot = (input[*i + 1] == '.') ? \
-	get_field(input, i) : -1;
-	return (digits);
+	while (input[*i] && !is_conv(input[*i]))
+	{
+		*i += 1;
+		if (datas->zero == -1)
+			datas->zero = is_flag_zero(input, *i);
+		if ((get_field(input, i, &datas)) < 0)
+			return (NULL);
+		if ((get_precision(input, i, &datas)) < 0)
+			return (NULL);
+		if (datas->star == -1)
+			datas->star = get_char(input, *i, '*');
+		if (datas->minus == -1)
+			datas->minus = get_char(input, *i, '-');
+	}
+	datas->star == 0 ? (datas->star = va_arg(ap, int)) : \
+	(datas->star = -1);
+	return (datas);
 }

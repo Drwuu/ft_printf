@@ -15,7 +15,9 @@ int main()
 	ft_printf("test%xbest%%bo\n", UINT_MAX);
 	ft_printf("test%Xbest%%bo\n", 1250005554); */
 	//ft_printf("test%pbest%%bo\n", &j);
-	ft_printf("%015d\n", 125);
+	ft_printf("%-5d\n", 125);
+	ft_printf("%*.15d\n", 12, 125);
+	ft_printf("%0.10d\n", 125);
 	
 	dprintf(1, "*** REAL ***\n");
 	/* dprintf(1, "test%cbest%%bo\n", 'T');
@@ -25,7 +27,9 @@ int main()
 	dprintf(1, "test%ubest%%bo\n", UINT_MAX);
 	dprintf(1, "test%xbest%%bo\n", UINT_MAX);ß
 	dprintf(1, "test%Xbest%%bo\n", 1250005554); */
-	dprintf(1, "%015d\n", 125);
+	dprintf(1, "%-5d\n", 125);
+	dprintf(1, "%0*.1d\n", 5, 125);
+	dprintf(1, "%0.10d\n", 125);
 
 
 	dprintf(1, "*** TEST FLAGS ***\n");
