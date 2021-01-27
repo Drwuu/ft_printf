@@ -6,23 +6,31 @@
 /*   By: lwourms <lwourms@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/23 14:59:57 by lwourms           #+#    #+#             */
-/*   Updated: 2021/01/23 18:08:26 by lwourms          ###   ########lyon.fr   */
+/*   Updated: 2021/01/27 15:49:13 by lwourms          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void		treat_field(t_list *lst)
+void		display_field(t_list *lst, int paddingLeft)
 {
 	int		i;
 	int		size;
+	int		str_size;
 	t_datas	*datas;
 
 	datas = lst->content;
-	if (datas->field > -1)
+	if (datas->dot > -1 && datas->dot <= (int)ft_strlen(datas->str))
+		str_size = datas->dot;
+	else
+		str_size = ft_strlen(datas->str);
+	if (datas->is_field)
 	{
-
-		size = datas->field - ft_strlen(datas->str);
+		if (paddingLeft)
+			size = datas->field - str_size;
+		else
+			size = (datas->field * -1) - str_size;
+		//dprintf(1, "size = %d\n", size);
 		i = 0;
 		while (i++ < size)
 		{
@@ -32,4 +40,38 @@ void		treat_field(t_list *lst)
 				ft_putchar_fd(' ', 1);
 		}
 	}
+}
+
+static int	display_dot_process(t_datas *datas, int str_size, char	**str)
+{
+	int		i;
+	int		size;
+
+	if (datas->dot > -1)
+	{
+		//dprintf(1, "dp dot proc\n");
+		if (datas->dot >= str_size && datas->d_conv)
+		{
+			size = datas->dot - str_size;
+			i = 0;
+			while (i++ < size)
+				ft_putchar_fd('0', 1);
+			return (0);
+		}
+		else if (!datas->d_conv)
+		{
+			if (!(*str = ft_substr(datas->str, 0, datas->dot)))
+				return (-1);
+			return (1);
+		}
+	}
+	return (0);
+}
+
+int			display_dot(t_list *lst, char **str)
+{
+	t_datas	*datas;
+
+	datas = lst->content;
+	return (display_dot_process(datas, ft_strlen(datas->str), str));
 }

@@ -6,7 +6,7 @@
 /*   By: lwourms <lwourms@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/09 14:44:47 by lwourms           #+#    #+#             */
-/*   Updated: 2021/01/23 15:19:56 by lwourms          ###   ########lyon.fr   */
+/*   Updated: 2021/01/25 13:24:48 by lwourms          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,12 @@ static t_list	**conv_digits(char c, t_datas *datas, t_list **list, va_list ap)
 		if (!(nb = ft_itoa_base("0123456789ABCDEF", va_arg(ap, unsigned int))))
 			return (NULL);
 	if (c == 'd' || c == 'i')
+	{
+		if (c == 'd')
+			datas->d_conv = 1;
 		if (!(nb = ft_itoa(va_arg(ap, int))))
 			return (NULL);
+	}
 	if (!(lst = fill_list(datas, list, nb, ft_strdup)))
 		return (NULL);
 	free(nb);
@@ -41,6 +45,8 @@ static t_list	*conv_char(char c, t_datas *datas, char *s, t_list **list)
 
 	if (!s)
 		return (NULL);
+	//dprintf(1, "conv char s = %s\n", s);
+	//dprintf(1, "conv char %%c = %c\n", c);
 	if (c == '%')
 	{
 		free(s);
@@ -70,10 +76,13 @@ va_list ap)
 	c == 'u' || c == 'x' || c == 'X')
 		if (!(lst = conv_digits(c, *datas, lst, ap)))
 			return (-1);
+	//dprintf(1, "conv proc s = %c\n", c);
 	if (c == '%' || c == 'c')
 		if (!(*lst = conv_char(c, *datas, ft_char_to_str(va_arg(ap, int)), \
 		lst)))
 			return (-1);
+	if (c == '\0')
+		free (*datas);
 	return (1);
 }
 
@@ -82,6 +91,7 @@ t_list			*no_conv(char *s, t_list **list)
 	t_list	*new_el;
 	t_datas *datas;
 
+	//dprintf(1, "no conv\n");
 	if (!s)
 		return (NULL);
 	if (!(datas = init_datas()))
