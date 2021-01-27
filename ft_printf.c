@@ -6,7 +6,7 @@
 /*   By: lwourms <lwourms@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/09 14:54:25 by lwourms           #+#    #+#             */
-/*   Updated: 2021/01/27 16:37:27 by lwourms          ###   ########lyon.fr   */
+/*   Updated: 2021/01/27 16:51:21 by lwourms          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,8 @@ static int		print_final_str(t_list *lst)
 			if (print_flags(lst) < 0)
 				return (-1);
 		}
-		(datas->field < 0 && datas-> minus == 0) ? display_field(lst, 0) : 0;
+		//dprintf(1, "minus = %d\n", datas->minus);
+		(datas->field < 0 || datas->minus == 0) ? display_field(lst, 0) : 0;
 		free(datas->str);
 		lst = lst->next;
 	}
