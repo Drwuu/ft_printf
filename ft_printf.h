@@ -6,7 +6,7 @@
 /*   By: lwourms <lwourms@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/09 14:33:04 by lwourms           #+#    #+#             */
-/*   Updated: 2021/01/25 17:03:04 by lwourms          ###   ########lyon.fr   */
+/*   Updated: 2021/01/29 14:57:21 by lwourms          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ t_list			*no_conv(char *s, t_list **list);
 int				convert_process(char c, t_datas **datas, t_list **lst, \
 				va_list ap);
 int				is_conv(char c);
-void			display_field(t_list *lst, int paddingLeft);
-int				display_dot(t_list *lst, char **str);
+void			display_field(t_list *lst, int paddingLeft, int *charNbr);
+int				display_dot(t_list *lst, char **str, int *charNbr);
 
 t_datas			*init_datas(void);
 t_list			**fill_list(t_datas *datas, t_list **list, char *str, \
