@@ -6,7 +6,7 @@
 /*   By: lwourms <lwourms@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/15 10:31:25 by lwourms           #+#    #+#             */
-/*   Updated: 2021/01/27 15:49:36 by lwourms          ###   ########lyon.fr   */
+/*   Updated: 2021/01/30 15:00:07 by lwourms          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ static int	get_field(const char *input, int *i, t_datas **flags, va_list ap)
 		free(digits);
 		while (ft_isdigit(input[*i]))
 			*i += 1;
+		*i -= 1;
 		return (1);
 	}
 	return (0);
@@ -72,6 +73,7 @@ va_list ap)
 		free(digits);
 		while (ft_isdigit(input[*i]))
 			*i += 1;
+		*i -= 1;
 		return (1);
 	}
 	return (0);
@@ -83,12 +85,12 @@ t_datas		*get_flags(const char *input, int *i, va_list ap)
 
 	if (!(datas = init_datas()))
 		return (NULL);
-	//dprintf(1, "get flags input = %c\n", input[*i]);
+	//dprintf(1, "get flags input = %c at %d\n", input[*i], *i);
 	while (input[*i] && !is_conv(input[*i]))
 	{
 		*i += 1;
 		if (input[*i] == '%')
-			return (datas);
+			break;
 		//dprintf(1, "getting flags\n");
 		if (datas->zero == -1)
 			datas->zero = is_flag_zero(input, *i);
@@ -101,5 +103,9 @@ t_datas		*get_flags(const char *input, int *i, va_list ap)
 		if (datas->minus == -1)
 			datas->minus = get_char(input, *i, '-');
 	}
+	if (datas->minus == 0)
+		datas->zero = -1;
+	//dprintf(1, "get flags field = %d and input = %c at %d\n", datas->field,
+	//input[*i], *i);
 	return (datas);
 }

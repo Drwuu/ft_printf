@@ -6,7 +6,7 @@
 /*   By: lwourms <lwourms@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/09 14:44:47 by lwourms           #+#    #+#             */
-/*   Updated: 2021/01/25 13:24:48 by lwourms          ###   ########lyon.fr   */
+/*   Updated: 2021/01/30 16:34:04 by lwourms          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,6 @@ static t_list	*conv_char(char c, t_datas *datas, char *s, t_list **list)
 
 	if (!s)
 		return (NULL);
-	//dprintf(1, "conv char s = %s\n", s);
-	//dprintf(1, "conv char %%c = %c\n", c);
 	if (c == '%')
 	{
 		free(s);
@@ -54,8 +52,10 @@ static t_list	*conv_char(char c, t_datas *datas, char *s, t_list **list)
 			return (NULL);
 	}
 	else if (c == 'c')
-		if (!(datas->str = s))
-			return (NULL);
+	{
+		datas->str = s;
+		datas->c_conv = 1;
+	}
 	if (!(new_el = ft_lstnew(datas)))
 		return (NULL);
 	ft_lstadd_back(list, new_el);

@@ -6,7 +6,7 @@
 /*   By: lwourms <lwourms@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/13 13:05:40 by lwourms           #+#    #+#             */
-/*   Updated: 2021/01/27 15:47:36 by lwourms          ###   ########lyon.fr   */
+/*   Updated: 2021/01/30 16:34:43 by lwourms          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ t_datas	*init_datas(void)
 	datas->star = -1;
 	datas->zero = -1;
 	datas->d_conv = 0;
+	datas->c_conv = 0;
 	return (datas);
 }
 

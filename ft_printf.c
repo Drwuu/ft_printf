@@ -6,7 +6,7 @@
 /*   By: lwourms <lwourms@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/09 14:54:25 by lwourms           #+#    #+#             */
-/*   Updated: 2021/01/29 15:03:14 by lwourms          ###   ########lyon.fr   */
+/*   Updated: 2021/01/30 16:53:59 by lwourms          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,8 @@ static int		print_minus(t_list *lst, t_datas *datas, int *charNbr)
 		if (print_flags(lst, charNbr) < 0)
 			return (-1);
 	}
+	if (datas->c_conv && !datas->str[0])
+		ft_putchar_fd('\0', 1);
 	return (0);
 }
 

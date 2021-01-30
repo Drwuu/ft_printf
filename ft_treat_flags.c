@@ -6,7 +6,7 @@
 /*   By: lwourms <lwourms@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/23 14:59:57 by lwourms           #+#    #+#             */
-/*   Updated: 2021/01/29 14:57:27 by lwourms          ###   ########lyon.fr   */
+/*   Updated: 2021/01/30 17:10:17 by lwourms          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ void		display_field(t_list *lst, int paddingLeft, int *charNbr)
 			size = (datas->field >= 0) ? datas->field - str_size : \
 			(datas->field * -1) - str_size;
 		i = 0;
+		(datas->c_conv && !datas->str[0]) ? size -= 1 : 0;
 		while (i++ < size)
 		{
 			(datas->zero > -1) ? ft_putchar_fd('0', 1) : ft_putchar_fd(' ', 1);
@@ -52,6 +53,7 @@ int *charNbr)
 		{
 			size = datas->dot - str_size;
 			i = 0;
+			(datas->c_conv && !datas->str[0]) ? size -= 1 : 0;
 			while (i++ < size)
 			{
 				ft_putchar_fd('0', 1);

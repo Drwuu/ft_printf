@@ -6,7 +6,7 @@
 /*   By: lwourms <lwourms@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/09 14:33:04 by lwourms           #+#    #+#             */
-/*   Updated: 2021/01/29 14:57:21 by lwourms          ###   ########lyon.fr   */
+/*   Updated: 2021/01/30 16:34:48 by lwourms          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ typedef	struct	s_datas
 	int				minus;
 	int				zero;
 	int				d_conv;
+	int				c_conv;
 }				t_datas;
 
 int				ft_printf(const char *input, ...);
