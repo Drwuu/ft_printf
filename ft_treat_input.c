@@ -6,7 +6,7 @@
 /*   By: lwourms <lwourms@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/09 14:54:25 by lwourms           #+#    #+#             */
-/*   Updated: 2021/01/30 14:37:03 by lwourms          ###   ########lyon.fr   */
+/*   Updated: 2021/01/31 16:39:38 by lwourms          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,11 @@ va_list ap)
 		//dprintf(1, "treat proc input = %c\n", input[*i]);
 		*i = ft_chr_index(input, '%', *i);
 		if (*i - start > 0)
-			if (!(*lst = no_conv(ft_substr(input, start, *i - start), lst)))
+			if (!(*lst = get_no_conv(ft_substr(input, start, *i - start), lst)))
 				return (-1);
 		if (!(datas = get_flags(input, i, ap)))
 			return (-1);
-		if ((convert_process(input[*i], &datas, lst, ap)) < 0)
+		if ((get_conversions(input[*i], &datas, lst, ap)) < 0)
 			return (-1);
 		if (input[*i] == '\0')
 			return (*i);
@@ -47,13 +47,13 @@ t_list			*treat_input(const char *input, t_list **lst, va_list ap)
 
 	i = 0;
 	i = ft_chr_index(input, '%', i);
-	if (!(*lst = no_conv(ft_substr(input, 0, i), lst)))
+	if (!(*lst = get_no_conv(ft_substr(input, 0, i), lst)))
 		return (NULL);
 	f_elem = *lst;
 	if ((j = proccess_treatment(input, &i, lst, ap)) < 0)
 		return (NULL);
 	if (input[j])
-		if (!(*lst = no_conv(ft_substr(input, j, i), lst)))
+		if (!(*lst = get_no_conv(ft_substr(input, j, i), lst)))
 			return (NULL);
 	return (f_elem);
 }

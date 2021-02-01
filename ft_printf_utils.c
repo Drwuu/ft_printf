@@ -6,11 +6,19 @@
 /*   By: lwourms <lwourms@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/13 13:05:40 by lwourms           #+#    #+#             */
-/*   Updated: 2021/01/30 16:34:43 by lwourms          ###   ########lyon.fr   */
+/*   Updated: 2021/01/31 17:35:07 by lwourms          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+int				is_conv(char c)
+{
+	if (c == 's' || c == 'p' || c == 'd' || c == 'i' || c == 'u' || \
+	c == 'x' || c == 'X' || c == 'c')
+		return (1);
+	return (0);
+}
 
 t_datas	*init_datas(void)
 {
@@ -19,12 +27,13 @@ t_datas	*init_datas(void)
 	if (!(datas = ft_calloc(sizeof(*datas), 1)))
 		return (NULL);
 	datas->str = NULL;
-	datas->dot = -1;
-	datas->field = -1;
+	datas->dot = 0;
+	datas->is_dot = 0;
+	datas->field = 0;
 	datas->is_field = 0;
-	datas->minus = -1;
-	datas->star = -1;
-	datas->zero = -1;
+	datas->minus = 0;
+	datas->star = 0;
+	datas->zero = 0;
 	datas->d_conv = 0;
 	datas->c_conv = 0;
 	return (datas);
@@ -60,8 +69,11 @@ char *f(const char *))
 	t_list	*new_el;
 
 	if (!str)
-		return (NULL);
-	if (!(datas->str = f(str)))
+	{
+		if (!(datas->str = ft_strdup("(null)")))
+			return (NULL);
+	}
+	else if (!(datas->str = f(str)))
 		return (NULL);
 	if (!(new_el = ft_lstnew(datas)))
 		return (NULL);

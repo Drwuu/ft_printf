@@ -6,7 +6,7 @@
 /*   By: lwourms <lwourms@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/29 18:33:01 by lwourms           #+#    #+#             */
-/*   Updated: 2021/01/13 19:31:50 by lwourms          ###   ########lyon.fr   */
+/*   Updated: 2021/02/01 17:16:57 by lwourms          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,11 @@ char			*ft_itoa_base(const char *base, unsigned int n)
 	len = findbaselen((long long)n, b_size);
 	if (!(result = malloc(sizeof(*result) * (len + 1))))
 		return (NULL);
+	if (n == 0)
+	{
+		result[0] = '0';
+		return (result);
+	}
 	ll_nb = n;
 	if (n < 0)
 	{

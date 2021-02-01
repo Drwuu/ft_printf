@@ -6,7 +6,7 @@
 /*   By: lwourms <lwourms@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/11 15:21:17 by lwourms           #+#    #+#             */
-/*   Updated: 2021/01/17 14:41:33 by lwourms          ###   ########lyon.fr   */
+/*   Updated: 2021/01/31 12:16:55 by lwourms          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ typedef	struct	s_list
 
 int				ft_isalnum(int c);
 int				ft_isascii(int c);
+int				ft_ischar(const char *s, char c);
 int				ft_isdigit(int c);
 int				ft_isprint(int c);
 int				ft_isalpha(int c);
@@ -64,6 +65,7 @@ int				ft_memcmp(const void *s1, const void *s2, size_t n);
 
 void			ft_putchar_fd(char c, int fd);
 void			ft_putstr_fd(char *s, int fd);
+void			ft_putstr_at_fd(const char *s, int start, int end, int fd);
 void			ft_putendl_fd(char *s, int fd);
 void			ft_putnbr_fd(int n, int fd);
 
