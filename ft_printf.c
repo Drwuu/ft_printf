@@ -6,7 +6,7 @@
 /*   By: lwourms <lwourms@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/09 14:54:25 by lwourms           #+#    #+#             */
-/*   Updated: 2021/01/31 18:26:01 by lwourms          ###   ########lyon.fr   */
+/*   Updated: 2021/02/03 16:26:43 by lwourms          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static int	free_error(t_list *lst, va_list ap)
 	}
 	ft_lstclear(&f_elem, free);
 	va_end(ap);
-	dprintf(1, "ERROR\n");
+	//dprintf(1, "ERROR\n");
 	return (-1);
 }
 

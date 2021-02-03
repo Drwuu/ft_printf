@@ -6,7 +6,7 @@
 /*   By: lwourms <lwourms@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/23 14:59:57 by lwourms           #+#    #+#             */
-/*   Updated: 2021/02/01 16:42:27 by lwourms          ###   ########lyon.fr   */
+/*   Updated: 2021/02/03 17:21:42 by lwourms          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ void		print_dot(int size, t_datas *datas, int *charNbr)
 	int	str_size;
 
 	str_size = ft_strlen(datas->str);
+	datas->p_conv ? ft_putstr_fd("0x", 1) : 0; 
 	(datas->str[0] == '-') ? print_char(1, '-', charNbr) : 0;
 	(datas->d_conv && datas->dot > 0) ? print_char(size - str_size, '0', charNbr) : 0;
 	i = 0;

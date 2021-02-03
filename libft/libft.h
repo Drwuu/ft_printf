@@ -6,7 +6,7 @@
 /*   By: lwourms <lwourms@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/11 15:21:17 by lwourms           #+#    #+#             */
-/*   Updated: 2021/01/31 12:16:55 by lwourms          ###   ########lyon.fr   */
+/*   Updated: 2021/02/03 16:36:03 by lwourms          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ char			*ft_strnstr(const char *haystack, const char *needle,
 int				ft_atoi(const char *str);
 char			*ft_itoa(int n);
 char			*ft_itoa_ui(unsigned int n);
-char			*ft_itoa_base(const char *base, unsigned int n);
+char			*ft_itoa_base(const char *base, long long n);
 void			*ft_calloc(size_t count, size_t size);
 char			*ft_strdup(const char *s1);
 char			*ft_substr(char const *s, unsigned int start, size_t len);

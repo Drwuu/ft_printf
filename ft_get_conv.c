@@ -6,7 +6,7 @@
 /*   By: lwourms <lwourms@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/09 14:44:47 by lwourms           #+#    #+#             */
-/*   Updated: 2021/02/01 17:08:20 by lwourms          ###   ########lyon.fr   */
+/*   Updated: 2021/02/03 16:54:46 by lwourms          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,20 +36,18 @@ static t_list	**get_digits(char c, t_datas *datas, t_list **list, va_list ap)
 	return (lst);
 }
 
-static t_list	*get_char(char c, t_datas *datas, char *s, t_list **list)
+static t_list	*get_char(char c, va_list ap, t_datas *datas, t_list **list)
 {
 	t_list	*new_el;
 
-	if (!s)
-		return (NULL);
 	if (c == '%')
 	{
-		free(s);
 		if (!(datas->str = ft_char_to_str('%')))
 			return (NULL);
 	}
-	else if (c == 'c')
-		datas->str = s;
+	else
+		if (!(datas->str = ft_char_to_str(va_arg(ap, int))))
+			return (NULL);
 	if (!(new_el = ft_lstnew(datas)))
 		return (NULL);
 	ft_lstadd_back(list, new_el);
@@ -63,21 +61,20 @@ va_list ap)
 	if (c == 's')
 		if (!(lst = fill_list(*datas, lst, va_arg(ap, char *), ft_strdup)))
 			return (-1);
-	if (c == 'p') // not usable
+	if (c == 'p')
+	{
+		(*datas)->p_conv = 1;
 		if (!(lst = fill_list(*datas, lst, ft_itoa_base("0123456789abcdef", \
-		va_arg(ap, unsigned int)), ft_strdup)))
+		va_arg(ap, unsigned long)), ft_strdup)))
 			return (-1);
-	if (c == 'd' || c == 'i' || \
-	c == 'u' || c == 'x' || c == 'X')
+	}
+	if (c == 'd' || c == 'i' || c == 'u' || c == 'x' || c == 'X')
 		if (!(lst = get_digits(c, *datas, lst, ap)))
 			return (-1);
-	//dprintf(1, "conv proc s = %c\n", c);
 	if (c == '%' || c == 'c')
-		if (!(*lst = get_char(c, *datas, ft_char_to_str(va_arg(ap, int)), \
-		lst)))
+		if (!(*lst = get_char(c, ap, *datas, lst)))
 			return (-1);
-	if (c == '\0')
-		free (*datas);
+	(c == '\0') ? free(*datas) : 0;
 	return (1);
 }
 
@@ -86,7 +83,6 @@ t_list			*get_no_conv(char *s, t_list **list)
 	t_list	*new_el;
 	t_datas *datas;
 
-	//dprintf(1, "no conv\n");
 	if (!s)
 		return (NULL);
 	if (!(datas = init_datas()))

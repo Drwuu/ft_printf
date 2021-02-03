@@ -6,7 +6,7 @@
 /*   By: lwourms <lwourms@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/09 14:54:25 by lwourms           #+#    #+#             */
-/*   Updated: 2021/02/01 17:04:20 by lwourms          ###   ########lyon.fr   */
+/*   Updated: 2021/02/03 17:18:05 by lwourms          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@ static int	get_dot(t_datas *datas)
 	int	str_size;
 
 	str_size = ft_strlen(datas->str);
-	if (datas->d_conv && datas->dot <= str_size)
+	(datas->dot < 0) ? datas->dot = str_size : 0;
+	if (datas->d_conv && datas->dot < str_size)
 		(datas->str[0] == '0') ? (dot = 0) : (dot = str_size);
 	else if (datas->d_conv)
 		dot = datas->dot;
@@ -42,12 +43,19 @@ static int	get_field(t_datas *datas, int dot)
 	int	str_size;
 
 	str_size = ft_strlen(datas->str);
+	if (datas->field < 0)
+	{
+		datas->minus = 1;
+		datas->zero ? (datas->zero = 0) : 0;
+		datas->field *= -1;
+	}
 	if (datas->c_conv)
 		field = datas->field - 1;
 	else if (datas->is_dot)
 		field = datas->field - dot;
 	else
 		field = datas->field - str_size;
+	datas->p_conv ? field -= 2 : 0;
 	return (field);
 }
 
@@ -68,10 +76,10 @@ static void	print_str(int dot, int field, t_datas *datas, int *charNbr)
 		}
 		else
 		{
-			if (datas->zero && datas->str[0] == '-')
-				ft_putstr_at_fd(datas->str, 1, str_size, 1);
-			else
-				ft_putstr_fd(datas->str, 1);
+			datas->p_conv ? ft_putstr_fd("0x", 1) : 0; 
+			(datas->zero && datas->str[0] == '-') ? \
+			ft_putstr_at_fd(datas->str, 1, str_size, 1) : \
+			ft_putstr_fd(datas->str, 1);
 			*charNbr += str_size;
 		}
 	}

@@ -6,7 +6,7 @@
 /*   By: lwourms <lwourms@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/09 14:54:25 by lwourms           #+#    #+#             */
-/*   Updated: 2021/01/31 16:39:38 by lwourms          ###   ########lyon.fr   */
+/*   Updated: 2021/02/03 16:14:28 by lwourms          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ va_list ap)
 	start = *i;
 	while (input[*i])
 	{
-		//dprintf(1, "treat proc input = %c\n", input[*i]);
 		*i = ft_chr_index(input, '%', *i);
 		if (*i - start > 0)
 			if (!(*lst = get_no_conv(ft_substr(input, start, *i - start), lst)))
@@ -35,7 +34,6 @@ va_list ap)
 		*i += 1;
 		start = *i;
 	}
-	//dprintf(1, "treat proc end i = %d\n", *i);
 	return (*i);
 }
 
