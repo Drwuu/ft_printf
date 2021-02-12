@@ -6,7 +6,7 @@
 /*   By: lwourms <lwourms@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/13 13:05:40 by lwourms           #+#    #+#             */
-/*   Updated: 2021/02/03 16:54:13 by lwourms          ###   ########lyon.fr   */
+/*   Updated: 2021/02/11 15:48:57 by lwourms          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,17 +26,19 @@ t_datas	*init_datas(void)
 
 	if (!(datas = ft_calloc(sizeof(*datas), 1)))
 		return (NULL);
-	datas->str = NULL;
+	ft_bzero(datas, sizeof(*datas));
+	/* datas->str = NULL;
 	datas->dot = 0;
 	datas->is_dot = 0;
 	datas->field = 0;
 	datas->is_field = 0;
+	datas->is_null = 0;
 	datas->minus = 0;
 	datas->star = 0;
 	datas->zero = 0;
 	datas->d_conv = 0;
 	datas->c_conv = 0;
-	datas->p_conv = 0;
+	datas->p_conv = 0; */
 	return (datas);
 }
 
@@ -71,6 +73,7 @@ char *f(const char *))
 
 	if (!str)
 	{
+		datas->is_null = 1;
 		if (!(datas->str = ft_strdup("(null)"))) // problem here with itoa base | putstr in free_error function ?
 			return (NULL);
 	}

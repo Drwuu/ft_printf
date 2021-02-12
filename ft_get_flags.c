@@ -6,7 +6,7 @@
 /*   By: lwourms <lwourms@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/15 10:31:25 by lwourms           #+#    #+#             */
-/*   Updated: 2021/02/03 12:31:15 by lwourms          ###   ########lyon.fr   */
+/*   Updated: 2021/02/05 17:49:22 by lwourms          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ va_list ap)
 		while (ft_isdigit(input[*i]))
 			*i += 1;
 		*i -= 1;
+		//dprintf(1, "digits %d\n", ((t_datas *)*flags)->dot);
 		return (1);
 	}
 	return (0);

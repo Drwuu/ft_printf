@@ -6,7 +6,7 @@
 /*   By: lwourms <lwourms@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/09 14:44:47 by lwourms           #+#    #+#             */
-/*   Updated: 2021/02/03 16:54:46 by lwourms          ###   ########lyon.fr   */
+/*   Updated: 2021/02/05 11:23:10 by lwourms          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,15 +58,18 @@ static t_list	*get_char(char c, va_list ap, t_datas *datas, t_list **list)
 int				get_conversions(char c, t_datas **datas, t_list **lst, \
 va_list ap)
 {
+	char	*p;
+
 	if (c == 's')
 		if (!(lst = fill_list(*datas, lst, va_arg(ap, char *), ft_strdup)))
 			return (-1);
 	if (c == 'p')
 	{
+		p = ft_itoa_base("0123456789abcdef", va_arg(ap, unsigned long));
 		(*datas)->p_conv = 1;
-		if (!(lst = fill_list(*datas, lst, ft_itoa_base("0123456789abcdef", \
-		va_arg(ap, unsigned long)), ft_strdup)))
+		if (!(lst = fill_list(*datas, lst, p, ft_strdup)))
 			return (-1);
+		free (p);
 	}
 	if (c == 'd' || c == 'i' || c == 'u' || c == 'x' || c == 'X')
 		if (!(lst = get_digits(c, *datas, lst, ap)))
