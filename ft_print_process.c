@@ -6,7 +6,7 @@
 /*   By: lwourms <lwourms@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/09 14:54:25 by lwourms           #+#    #+#             */
-/*   Updated: 2021/02/12 18:15:52 by lwourms          ###   ########lyon.fr   */
+/*   Updated: 2021/02/13 17:38:34 by lwourms          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,26 +15,28 @@
 static int	get_dot(t_datas *datas)
 {
 	int	dot;
+	int	save;
 	int	str_size;
 
 	str_size = ft_strlen(datas->str);
-	if (datas->dot < 0)
+	save = datas->dot;
+	if (save < 0)
 	{
-		datas->dot = str_size;
+		save = str_size;
 		if (datas->d_conv && datas->str[0] != '0')
-			datas->dot = 0;
+			save = 0;
 	}
-	if (datas->d_conv && datas->dot < str_size)
+	if (datas->d_conv && save < str_size)
 		(datas->str[0] == '0') ? (dot = 0) : (dot = str_size);
 	else if (datas->d_conv)
 	{
-		dot = datas->dot;
+		dot = save;
 		(datas->str[0] == '-') ? dot++ : 0;
 	}
-	else if (datas->dot >= str_size)
+	else if (save >= str_size)
 		dot = str_size;
 	else
-		dot = datas->dot;
+		dot = save;
 	return (dot);
 }
 
@@ -65,7 +67,8 @@ static void	print_str(int dot, int field, t_datas *datas, int *charNbr)
 	int	str_size;
 
 	str_size = ft_strlen(datas->str);
-	(datas->zero && !datas->is_dot) ? print_zeros(field, datas, charNbr) : 0;
+	((datas->zero && !datas->is_dot) || (datas->zero && datas->dot < 0 && \
+	datas->field > str_size)) ? print_zeros(field, datas, charNbr) : 0;
 	if (datas->is_dot && !datas->c_conv)
 		print_dot(dot, datas, charNbr);
 	else

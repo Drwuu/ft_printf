@@ -6,7 +6,7 @@
 /*   By: lwourms <lwourms@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/09 14:33:04 by lwourms           #+#    #+#             */
-/*   Updated: 2021/02/05 16:23:38 by lwourms          ###   ########lyon.fr   */
+/*   Updated: 2021/02/13 16:42:30 by lwourms          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ typedef	struct	s_datas
 	int				is_field;
 	int				dot;
 	int				is_dot;
-	int				is_null;
+	int				zero_prt;
 	int				star;
 	int				minus;
 	int				zero;

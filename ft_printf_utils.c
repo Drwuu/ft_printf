@@ -6,7 +6,7 @@
 /*   By: lwourms <lwourms@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/13 13:05:40 by lwourms           #+#    #+#             */
-/*   Updated: 2021/02/11 15:48:57 by lwourms          ###   ########lyon.fr   */
+/*   Updated: 2021/02/13 16:37:36 by lwourms          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ char *f(const char *))
 
 	if (!str)
 	{
-		datas->is_null = 1;
+		//datas->is_null = 1;
 		if (!(datas->str = ft_strdup("(null)"))) // problem here with itoa base | putstr in free_error function ?
 			return (NULL);
 	}

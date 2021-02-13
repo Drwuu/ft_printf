@@ -33,10 +33,16 @@ int main()
 	dprintf(1, " ret = %d ", ft_printf("%0*.*i, %0*.*d, %0*.*d, %0*.*d, %0*.*d, %0*.*d, %0*.*d, %0*.*d", a, b, i, a, b, j, a, b, k, a, b, l, a, b, m, a, b, c, a, b, e, a, b, d));
 	dprintf(1, "\n"); */
 	dprintf(1, "ME :: ");
-	dprintf(1, " ret = %d ", ft_printf("%0*.*s", 4, -1, "8"));
+	dprintf(1, " ret = %d ", ft_printf("%0*.*d", 4, -2, -12));
 	dprintf(1, "\n");
 	dprintf(1, "PF :: ");
-	dprintf(1, " ret = %d ", dprintf(1, "%0*.*s", 4, -1, "8"));
+	dprintf(1, " ret = %d ", dprintf(1, "%0*.*d", 4, -2, -12));
+	dprintf(1, "\n");
+	dprintf(1, "ME :: ");
+	dprintf(1, " ret = %d ", ft_printf("%00d", -12));
+	dprintf(1, "\n");
+	dprintf(1, "PF :: ");
+	dprintf(1, " ret = %d ", dprintf(1, "%00d", -12));
 	dprintf(1, "\n");
 	//while(1);
 	
