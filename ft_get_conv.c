@@ -6,7 +6,7 @@
 /*   By: lwourms <lwourms@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/09 14:44:47 by lwourms           #+#    #+#             */
-/*   Updated: 2021/02/05 11:23:10 by lwourms          ###   ########lyon.fr   */
+/*   Updated: 2021/02/15 12:11:23 by lwourms          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,10 @@ static t_list	*get_char(char c, va_list ap, t_datas *datas, t_list **list)
 			return (NULL);
 	}
 	else
+	{
 		if (!(datas->str = ft_char_to_str(va_arg(ap, int))))
 			return (NULL);
+	}
 	if (!(new_el = ft_lstnew(datas)))
 		return (NULL);
 	ft_lstadd_back(list, new_el);
@@ -69,7 +71,7 @@ va_list ap)
 		(*datas)->p_conv = 1;
 		if (!(lst = fill_list(*datas, lst, p, ft_strdup)))
 			return (-1);
-		free (p);
+		free(p);
 	}
 	if (c == 'd' || c == 'i' || c == 'u' || c == 'x' || c == 'X')
 		if (!(lst = get_digits(c, *datas, lst, ap)))

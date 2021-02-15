@@ -6,7 +6,7 @@
 /*   By: lwourms <lwourms@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/15 10:31:25 by lwourms           #+#    #+#             */
-/*   Updated: 2021/02/05 17:49:22 by lwourms          ###   ########lyon.fr   */
+/*   Updated: 2021/02/15 12:24:13 by lwourms          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,6 @@ va_list ap)
 		while (ft_isdigit(input[*i]))
 			*i += 1;
 		*i -= 1;
-		//dprintf(1, "digits %d\n", ((t_datas *)*flags)->dot);
 		return (1);
 	}
 	return (0);
@@ -90,7 +89,7 @@ t_datas		*get_flags(const char *input, int *i, va_list ap)
 	{
 		*i += 1;
 		if (input[*i] == '%')
-			break;
+			break ;
 		if (!datas->zero)
 			datas->zero = is_flag_zero(input, *i);
 		if (get_field(input, i, &datas, ap) < 0)

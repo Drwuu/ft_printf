@@ -6,7 +6,7 @@
 /*   By: lwourms <lwourms@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/09 14:54:25 by lwourms           #+#    #+#             */
-/*   Updated: 2021/02/13 17:38:34 by lwourms          ###   ########lyon.fr   */
+/*   Updated: 2021/02/15 12:22:32 by lwourms          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@ static int	get_dot(t_datas *datas)
 			save = 0;
 	}
 	if (datas->d_conv && save < str_size)
-		(datas->str[0] == '0') ? (dot = 0) : (dot = str_size);
+		(datas->str[0] == '0') ? (dot = 0) :
+		(dot = str_size);
 	else if (datas->d_conv)
 	{
 		dot = save;
@@ -62,35 +63,35 @@ static int	get_field(t_datas *datas, int dot)
 	return (field);
 }
 
-static void	print_str(int dot, int field, t_datas *datas, int *charNbr)
+static void	print_str(int dot, int field, t_datas *datas, int *char_nbr)
 {
 	int	str_size;
 
 	str_size = ft_strlen(datas->str);
 	((datas->zero && !datas->is_dot) || (datas->zero && datas->dot < 0 && \
-	datas->field > str_size)) ? print_zeros(field, datas, charNbr) : 0;
+	datas->field > str_size)) ? print_zeros(field, datas, char_nbr) : 0;
 	if (datas->is_dot && !datas->c_conv)
-		print_dot(dot, datas, charNbr);
+		print_dot(dot, datas, char_nbr);
 	else
 	{
 		if (datas->c_conv && datas->str[0] == '\0')
 		{
 			ft_putchar_fd('\0', 1);
-			*charNbr += 1;
+			*char_nbr += 1;
 		}
 		else
 		{
-			if (datas->p_conv && (*charNbr += 2))
+			if (datas->p_conv && (*char_nbr += 2))
 				ft_putstr_fd("0x", 1);
 			(datas->zero && datas->str[0] == '-') ? \
 			ft_putstr_at_fd(datas->str, 1, str_size, 1) : \
 			ft_putstr_fd(datas->str, 1);
-			*charNbr += str_size;
+			*char_nbr += str_size;
 		}
 	}
 }
 
-void		print_process(t_list *lst, int *charNbr)
+void		print_process(t_list *lst, int *char_nbr)
 {
 	t_datas	*datas;
 	int		dot;
@@ -102,10 +103,10 @@ void		print_process(t_list *lst, int *charNbr)
 		dot = get_dot(datas);
 		field = get_field(datas, dot);
 		if (!datas->minus)
-			print_field(field, datas, charNbr);
-		print_str(dot, field, datas, charNbr);
+			print_field(field, datas, char_nbr);
+		print_str(dot, field, datas, char_nbr);
 		if (datas->minus)
-			print_field(field, datas, charNbr);
+			print_field(field, datas, char_nbr);
 		free(datas->str);
 		lst = lst->next;
 	}

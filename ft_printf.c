@@ -6,7 +6,7 @@
 /*   By: lwourms <lwourms@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/09 14:54:25 by lwourms           #+#    #+#             */
-/*   Updated: 2021/02/03 16:26:43 by lwourms          ###   ########lyon.fr   */
+/*   Updated: 2021/02/15 12:19:41 by lwourms          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ static int	free_error(t_list *lst, va_list ap)
 	}
 	ft_lstclear(&f_elem, free);
 	va_end(ap);
-	//dprintf(1, "ERROR\n");
 	return (-1);
 }
 
@@ -34,15 +33,15 @@ int			ft_printf(const char *input, ...)
 {
 	va_list		ap;
 	t_list		*lst;
-	int			charNbr;
+	int			char_nbr;
 
 	lst = NULL;
-	charNbr = 0;
+	char_nbr = 0;
 	va_start(ap, input);
 	if (!(lst = treat_input(input, &lst, ap)))
 		return (free_error(lst, ap));
-	print_process(lst, &charNbr);
+	print_process(lst, &char_nbr);
 	ft_lstclear(&lst, free);
 	va_end(ap);
-	return (charNbr);
+	return (char_nbr);
 }
